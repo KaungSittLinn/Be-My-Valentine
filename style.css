@@ -11,7 +11,8 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, #f5e0ee, #d5aecb);
+  /* Fixed 'def' to 'deg' for the gradient to work */
+  background: linear-gradient(135deg, #f5e0ee, #d5aecb); 
   font-family: "Poppins", serif;
   color: #4a4a4a;
   text-align: center;
@@ -19,6 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .container {
@@ -27,9 +29,17 @@ body {
   align-items: center;
   justify-content: center;
   padding: 4rem;
-  border-radius: 15px;
+  border-radius: 25px;
   background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* Added a gentle floating animation */
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 .img {
@@ -41,7 +51,7 @@ body {
 }
 
 .img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .title {
@@ -49,39 +59,46 @@ body {
   font-weight: 600;
   color: hotpink;
   margin-bottom: 2rem;
+  line-height: 1.4;
 }
 
 .buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .btn {
-  padding: 1.6rem 3rem;
+  padding: 1.6rem 3.5rem;
   border: none;
-  border-radius: 30px;
-  font-size: 1.8rem;
-  font-weight: 500;
+  border-radius: 50px;
+  font-size: 2rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.btn:hover {
-  transform: translateY(-2px);
+/* Pulse animation for the Yes button */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 5px 15px rgba(38, 149, 60, 0.4); }
+  50% { transform: scale(1.1); box-shadow: 0 5px 25px rgba(38, 149, 60, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 5px 15px rgba(38, 149, 60, 0.4); }
 }
 
 .btn-yes {
   background-color: #26953c;
   color: white;
+  animation: pulse 1.5s infinite;
 }
 
 .btn-no {
-  background-color: rgb(166, 37, 82);
+  background-color: #a62552;
   color: white;
-  transition: background-color 0.3s, transform 0.2s;
+  /* Ensure the scale transition is smooth when it shrinks */
+  transition: transform 0.2s ease, background-color 0.3s; 
 }
 
 .hidden {
