@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: linear-gradient(135def, #f5e0ee, #d5aecb);
+  background: linear-gradient(135deg, #f5e0ee, #d5aecb);
   font-family: "Poppins", serif;
   color: #4a4a4a;
   text-align: center;
@@ -67,10 +67,12 @@ body {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  &:hover {
-    transform: translateY(-2px);
-  }
 }
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
 .btn-yes {
   background-color: #26953c;
   color: white;
@@ -81,6 +83,7 @@ body {
   color: white;
   transition: background-color 0.3s, transform 0.2s;
 }
+
 .hidden {
   display: none;
 }
