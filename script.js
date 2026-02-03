@@ -14,7 +14,6 @@ const btnContainer = document.querySelector(".buttons");
 const yesBtn = document.querySelector(".btn-yes");
 const noBtn = document.querySelector(".btn-no");
 const img = document.querySelector(".img");
-const song = document.getElementById("loveSong");
 
 const MAX_IMAGES = 5;
 let play = true;
@@ -23,7 +22,7 @@ let noButtonSize = 1;
 let yesButtonSize = 1;
 
 yesBtn.addEventListener("click", () => {
-  title.innerHTML = "Yay! I Love You, Anh!! 💗<br><span style='font-size: 2rem;'>You've made me the happiest person!</span>";
+  title.innerHTML = "Yay! I Love You, Anh!! 💗";
   btnContainer.classList.add("hidden");
   changeImage("yes");
   
@@ -33,9 +32,7 @@ yesBtn.addEventListener("click", () => {
     origin: { y: 0.6 }
   });
 
-  if(song) song.play();
-
-  // Notify you via Formspree
+  // Notify you via Formspree (Replace with your actual ID)
   fetch("https://formspree.io/f/YOUR_ID_HERE", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -52,10 +49,8 @@ noBtn.addEventListener("click", () => {
     shrinkNoButton();
     updateNoButtonText();
     
-    // If we reach the last message, turn the No button into a Yes button
-    if (noCount >= 7) { 
-        noBtn.classList.remove("btn-no");
-        noBtn.classList.add("btn-yes");
+    // After these messages, turn the No button into a Yes button
+    if (noCount >= 8) { 
         noBtn.style.backgroundColor = "#26953c";
         noBtn.innerHTML = "Yes! ❤️";
         noBtn.addEventListener("click", () => yesBtn.click());
@@ -82,9 +77,9 @@ function generateMessage(noCount) {
     "Don't do this to me 😭",
     "You're breaking my heart 💔",
     "I'm gonna cry... 😭💔",
-    "Fine, I'm actually crying now 🌊😭",
-    "Okay, last chance to say Yes...",
-    "Just click Yes already! ❤️"
+    "I'm actually crying now... 🌊",
+    "Okay, fine. Just click Yes?",
+    "YES! ❤️"
   ];
   return messages[Math.min(noCount, messages.length - 1)];
 }
