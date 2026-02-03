@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, #f5e0ee, #d5aecb);
+  background: linear-gradient(135deg, #f5e0ee, #d5aecb); /* Fixed def to deg */
   font-family: "Poppins", serif;
   color: #4a4a4a;
   text-align: center;
@@ -45,7 +45,6 @@ body {
   height: 28rem;
   border-radius: 12px;
   margin-bottom: 2rem;
-  transition: transform 0.3s ease-in-out;
 }
 
 .title {
@@ -53,7 +52,6 @@ body {
   font-weight: 600;
   color: hotpink;
   margin-bottom: 2rem;
-  line-height: 1.4;
 }
 
 .buttons {
@@ -61,7 +59,6 @@ body {
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
 }
 
 .btn {
@@ -72,7 +69,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes pulse {
@@ -90,7 +86,6 @@ body {
 .btn-no {
   background-color: #a62552;
   color: white;
-  transition: transform 0.2s ease, background-color 0.3s;
 }
 
 .hidden {
