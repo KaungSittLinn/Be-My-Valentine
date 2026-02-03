@@ -11,8 +11,7 @@ html {
 }
 
 body {
-  /* Fixed 'def' to 'deg' for the gradient to work */
-  background: linear-gradient(135deg, #f5e0ee, #d5aecb); 
+  background: linear-gradient(135deg, #f5e0ee, #d5aecb);
   font-family: "Poppins", serif;
   color: #4a4a4a;
   text-align: center;
@@ -32,7 +31,6 @@ body {
   border-radius: 25px;
   background: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  /* Added a gentle floating animation */
   animation: float 3s ease-in-out infinite;
 }
 
@@ -48,10 +46,6 @@ body {
   border-radius: 12px;
   margin-bottom: 2rem;
   transition: transform 0.3s ease-in-out;
-}
-
-.img:hover {
-  transform: scale(1.05);
 }
 
 .title {
@@ -81,11 +75,10 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Pulse animation for the Yes button */
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 5px 15px rgba(38, 149, 60, 0.4); }
-  50% { transform: scale(1.1); box-shadow: 0 5px 25px rgba(38, 149, 60, 0.6); }
-  100% { transform: scale(1); box-shadow: 0 5px 15px rgba(38, 149, 60, 0.4); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .btn-yes {
@@ -97,8 +90,7 @@ body {
 .btn-no {
   background-color: #a62552;
   color: white;
-  /* Ensure the scale transition is smooth when it shrinks */
-  transition: transform 0.2s ease, background-color 0.3s; 
+  transition: transform 0.2s ease, background-color 0.3s;
 }
 
 .hidden {
