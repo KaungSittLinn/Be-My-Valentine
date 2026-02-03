@@ -14,6 +14,7 @@ const btnContainer = document.querySelector(".buttons");
 const yesBtn = document.querySelector(".btn-yes");
 const noBtn = document.querySelector(".btn-no");
 const img = document.querySelector(".img");
+const song = document.getElementById("loveSong");
 
 const MAX_IMAGES = 5;
 let play = true;
@@ -22,9 +23,24 @@ let noButtonSize = 1;
 let yesButtonSize = 1;
 
 yesBtn.addEventListener("click", () => {
-  title.innerHTML = "Yay! I Love You, Anh!! 💗";
+  title.innerHTML = "Yay! I Love You, Anh!! 💗<br><span style='font-size: 2rem;'>You've made me the happiest person!</span>";
   btnContainer.classList.add("hidden");
   changeImage("yes");
+  
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+
+  if(song) song.play();
+
+  // Notify you via Formspree
+  fetch("https://formspree.io/f/YOUR_ID_HERE", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: "Anh said YES! ❤️" })
+  });
 });
 
 noBtn.addEventListener("click", () => {
@@ -35,7 +51,16 @@ noBtn.addEventListener("click", () => {
     resizeYesButton();
     shrinkNoButton();
     updateNoButtonText();
-    if (noCount === MAX_IMAGES) play = false;
+    
+    // If we reach the last message, turn the No button into a Yes button
+    if (noCount >= 7) { 
+        noBtn.classList.remove("btn-no");
+        noBtn.classList.add("btn-yes");
+        noBtn.style.backgroundColor = "#26953c";
+        noBtn.innerHTML = "Yes! ❤️";
+        noBtn.addEventListener("click", () => yesBtn.click());
+        play = false; 
+    }
   }
 });
 
@@ -45,7 +70,7 @@ function resizeYesButton() {
 }
 
 function shrinkNoButton() {
-  noButtonSize *= 0.90;
+  noButtonSize *= 0.85;
   noBtn.style.transform = `scale(${noButtonSize})`;
 }
 
@@ -57,15 +82,17 @@ function generateMessage(noCount) {
     "Don't do this to me 😭",
     "You're breaking my heart 💔",
     "I'm gonna cry... 😭💔",
+    "Fine, I'm actually crying now 🌊😭",
+    "Okay, last chance to say Yes...",
+    "Just click Yes already! ❤️"
   ];
   return messages[Math.min(noCount, messages.length - 1)];
 }
 
 function changeImage(image) {
-  img.src =
-    image === "yes"
-      ? "https://media.tenor.com/ACi1vdjNbpIAAAAi/%EC%9C%A0%ED%83%80-%ED%86%A4%ED%86%A4%ED%94%84%EB%A0%8C%EC%A6%88.gif"
-      : tontonGifs[image];
+  img.src = image === "yes" 
+    ? "https://media.tenor.com/ACi1vdjNbpIAAAAi/%EC%9C%A0%ED%83%80-%ED%86%A4%ED%86%A4%ED%94%84%EB%A0%8C%EC%A6%88.gif"
+    : tontonGifs[image];
 }
 
 function updateNoButtonText() {
